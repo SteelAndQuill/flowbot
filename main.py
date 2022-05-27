@@ -1,3 +1,7 @@
+# Editor: @SteelAndQuill
+# Forked May 27, 2022
+# Purpose: Use for the BurryEdge server
+
 import discord
 from discord.ext import commands
 import aiohttp
@@ -33,15 +37,15 @@ console = ""
 driver = None
 client = None
 clientReady = False
-flowUser = os.environ.get("FLOWUSERNAME")
-flowPw = os.environ.get("FLOWPASSWORD")
+flowUser = os.environ.get("FLOWUSERNAME") #Requires FlowAlgo UName
+flowPw = os.environ.get("FLOWPASSWORD") #Requires FlowAlgo PW
 all_flow = []
 flow_check = set()
 update_count = 0
-reg_channel_id = 795486318012268564
-golden_channel_id = 795486634907926529
-unusual_channel_id = 795486772050133053
-TOKEN = os.environ.get("TOKEN")
+reg_channel_id = 853132377382453259 #BurryEdge Test Channel
+golden_channel_id = 853132377382453259 #BurryEdge Test Channel
+unusual_channel_id = 853132377382453259 #BurryEdge Test Channel
+TOKEN = os.environ.get("TOKEN") # Needs bot's Discord user token
 # -----------------------------------------------------------------------------
 
 client = commands.Bot(command_prefix='.')
@@ -191,7 +195,7 @@ def run(client):
   async def on_ready():
     global clientReady
     clientReady = True
-    activity = discord.Activity(name='wolftradingllc.com', type=discord.ActivityType.watching)
+    activity = discord.Activity(name='OptionsScanner', type=discord.ActivityType.watching)
     await client.change_presence(activity=activity)
     print(f'{client.user} has connected to Discord!')
   
@@ -229,7 +233,7 @@ def run(client):
       color = discord.Colour.gold() if gsweep != "" else discord.Colour.purple() if unusual != "" else discord.Colour.green() if sizelot != "" else discord.Colour.red()
       embed = discord.Embed(title=f'{order_type}: {ticker} {cp}', 
         description=f'Expiry\n{exp}\nStrike\n${strike}\nContract\n{cp}\nSize @ Price\n{details}\nPremium\n{prem}', colour=color)
-      embed.set_footer(text='Powered By Wolf Trading LLC')
+      embed.set_footer(text='Brought to you by the BurryEdge Team')
       await channel.send(channel, embed=embed)
   
   @client.command(pass_context=True)
@@ -252,7 +256,7 @@ def run(client):
         color = discord.Colour.gold() if gsweep != "" else discord.Colour.purple() if unusual != "" else discord.Colour.green() if sizelot != "" else discord.Colour.red()
         embed = discord.Embed(title=f'{order_type}: {ticker} {cp}', 
           description=f'Expiry\n{exp}\nStrike\n${strike}\nContract\n{cp}\nSize @ Price\n{details}\nPremium\n{prem}', colour=color)
-        embed.set_footer(text='Powered By Wolf Trading LLC')
+        embed.set_footer(text='Brought to you by the BurryEdge Team')
         await channel.send(channel, embed=embed)
         
   @client.command(pass_context=True)
@@ -275,7 +279,7 @@ def run(client):
         color = discord.Colour.gold() if gsweep != "" else discord.Colour.purple() if unusual != "" else discord.Colour.green() if sizelot != "" else discord.Colour.red()
         embed = discord.Embed(title=f'{order_type}: {ticker} {cp}', 
           description=f'Expiry\n{exp}\nStrike\n${strike}\nContract\n{cp}\nSize @ Price\n{details}\nPremium\n{prem}', colour=color)
-        embed.set_footer(text='Powered By Wolf Trading LLC')
+        embed.set_footer(text='Brought to you by the BurryEdge Team')
         await channel.send(channel, embed=embed)
   client.run(TOKEN)
   
@@ -304,7 +308,7 @@ async def showFlow(added_flow_n):
       elif unusual != "":
         embed = discord.Embed(title=f'{order_type}: {ticker} {cp}', 
         description=f'Expiry\n{exp}\nStrike\n${strike}\nContract\n{cp}\nSize @ Price\n{details}\nPremium\n{prem}', colour=discord.Colour.purple())
-        embed.set_footer(text='Powered By Wolf Trading LLC')
+        embed.set_footer(text='Brought to you by the BurryEdge Team')
         channel = client.get_channel(unusual_channel_id)
         await channel.send(channel, embed=embed)
       else:
@@ -315,7 +319,7 @@ async def showFlow(added_flow_n):
         channel = client.get_channel(reg_channel_id)
         embed = discord.Embed(title=f'{order_type}: {ticker} {cp}', 
           description=f'Expiry\n{exp}\nStrike\n${strike}\nContract\n{cp}\nSize @ Price\n{details}\nPremium\n{prem}', colour=color)
-        embed.set_footer(text='Powered By Wolf Trading LLC')
+        embed.set_footer(text='Brought to you by the BurryEdge Team')
         await channel.send(channel, embed=embed)
 
 def main():
