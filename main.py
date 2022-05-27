@@ -1,3 +1,4 @@
+# Original author: @Jaloo555
 # Editor: @SteelAndQuill
 # Forked May 27, 2022
 # Purpose: Use for the BurryEdge server
